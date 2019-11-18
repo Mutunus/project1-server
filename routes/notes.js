@@ -3,6 +3,6 @@ const router = express.Router()
 const queries = require('./../controllers/notes/exports')
 
 router.post('/', queries.upsertNote)
-router.get('/:userId', queries.getUserNotes)
+router.get('/', queries.getUserNotes)
 
 module.exports = router

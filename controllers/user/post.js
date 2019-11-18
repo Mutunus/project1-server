@@ -54,7 +54,7 @@ module.exports = {
             const token = await jwt.sign({
                 username,
                 userId: user._id
-            }, 'cockbags', { expiresIn: '1h' })
+            }, 'JWT_KEY', { expiresIn: '1h' })
             res.status(200).json(token)
         }
         else {

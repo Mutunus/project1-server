@@ -3,7 +3,8 @@ const mongoose = require('mongoose')
 
 module.exports = {
     getUserNotes: (req, res) => {
-        const { userId } = req.params
+        const { userId } = req.user;
+        
         NotesModel
         .find(
             {

@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 
 // routes
+const validate = require('./auth/validate')
 const userRoutes = require('./routes/user')
 const notesRoutes = require('./routes/notes')
 
@@ -34,6 +35,6 @@ app.get('/', (req, res) => {
 })
 
 app.use('/api/user', userRoutes)
-app.use('/api/notes', notesRoutes)
+app.use('/api/notes', validate, notesRoutes)
 
 app.listen(3000, () => console.log('server1 listening on port 3000'))

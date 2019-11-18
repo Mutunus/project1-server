@@ -3,7 +3,9 @@ const mongoose = require('mongoose')
 
 module.exports = {
     upsertNote: (req, res) => {
-        const { note, _id, userId } = req.body
+        const { note, _id } = req.body;
+        const { userId } = req.user;
+
         NotesModel
         .findByIdAndUpdate(
             _id ? _id : new mongoose.Types.ObjectId(),
@@ -16,9 +18,8 @@ module.exports = {
             }
         )
         .then(result => {
-            console.log(result)
             res.status(201)
-            .send()
+            .json('note successfully created')
         })
         .catch(error => {
             console.log(`unable to save note: ${error}`)
