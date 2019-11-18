@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const utils = require('./../../utils/encryption.util')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
+const moment = require('moment')
 
 module.exports = {
     upsertUser: async (req, res) => {
@@ -55,7 +56,7 @@ module.exports = {
                 username,
                 userId: user._id
             }, 'JWT_KEY', { expiresIn: '1h' })
-            res.status(200).json(token)
+            res.status(200).json({ token, expires: moment().subtract(1, 'hour') })
         }
         else {
             res.status(400).json('incorrect username or password')
