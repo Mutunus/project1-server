@@ -4,10 +4,10 @@ const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 
 // routes
-const testRoutes = require('./routes/test')
+const userRoutes = require('./routes/user')
 const notesRoutes = require('./routes/notes')
 
-mongoose.connect(`mongodb://localhost/shitdicks`)
+mongoose.connect(`mongodb://localhost/app`)
 
 mongoose.connection.on('connected', () => console.log('mongoose connected'))
 
@@ -30,10 +30,10 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 app.get('/', (req, res) => {
-    res.send('hello')
+    res.send('yep, i am working')
 })
 
-app.use('/test', testRoutes)
+app.use('/api/user', userRoutes)
 app.use('/api/notes', notesRoutes)
 
 app.listen(3000, () => console.log('server1 listening on port 3000'))
